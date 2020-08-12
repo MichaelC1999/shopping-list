@@ -14,10 +14,7 @@ $(function() {
             '<span class="button-label">delete</span>'+
           '</button></div></li>')
     
-        //There must be a more efficient way than to list out the entire section to append a new box
-
-        //It adds a new section when button is clicked.
-        //Why do I need .val() on the end?
+        
 
     })
     
@@ -25,16 +22,18 @@ $(function() {
 
     $('li').on('click', 'button.shopping-item-toggle', function(event){
         event.preventDefault()
-        const toDo = $(this)
-        toDo.find('.shopping-item').toggleClass('shopping-item__checked')
+        
+        $(this).parent('.shopping-item').toggleClass('shopping-item__checked')
         
         //My logic is that when you click on the toggle button, 
-        //'this' would be the 'li' parent of the button. What does 'this' currently represent?
+        //'li' would be the parent of 'this', or the button. Am I using correct syntax for 'this' here?
+
 
     })
 
-    $('li').on('click', 'button.shopping-item-delete', function(event) {
-        $(this).remove();
+    $('ul').on('click', 'button.shopping-item-delete', function(event) {
+      event.preventDefault()  
+      $(this).parent('li').remove();
         //This function just removes the delete button.
         //Why doesn't 'this' represent 'li'?, but rather the delete button?
         //Shouldn't this callback function delete new boxes too?
